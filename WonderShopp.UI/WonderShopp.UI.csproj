@@ -321,6 +321,14 @@
       <Project>{A8CBB5EC-4477-4A67-8E7B-7D4FBCFDA4EA}</Project>
       <Name>WonderShopp.DataAccess.Inmemory</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WonderShopp.DataAccess.SQL\WonderShopp.DataAccess.SQL.csproj">
+      <Project>{c6812dcd-09df-4f7d-a694-b2ebd4c6057e}</Project>
+      <Name>WonderShopp.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WonderShopp.Services\WonderShopp.Services.csproj">
+      <Project>{459a3c3d-9107-485a-94cd-508559b04089}</Project>
+      <Name>WonderShopp.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

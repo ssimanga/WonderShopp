@@ -4,6 +4,7 @@ using Unity;
 using WonderShopp.Core.Contracts;
 using WonderShopp.Core.Models;
 using WonderShopp.DataAccess.Inmemory;
+using WonderShopp.DataAccess.SQL;
 
 namespace WonderShopp.UI
 {
@@ -45,8 +46,8 @@ namespace WonderShopp.UI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Product>, InMemoryRepository<Product>>();
-            container.RegisterType<IRepository<ProductCategory>, InMemoryRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
+            container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
         }
     }
 }
