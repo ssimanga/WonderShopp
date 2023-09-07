@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,7 +34,7 @@ namespace WonderShopp.UI.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Product product, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -41,6 +42,11 @@ namespace WonderShopp.UI.Controllers
             }
             else
             {
+                if(file != null)
+                {
+                    product.Image = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//ProductImages" + product.Image));
+                }
                 context.Insert(product);
                 context.Commit();
                 return RedirectToAction("Index");
@@ -61,7 +67,7 @@ namespace WonderShopp.UI.Controllers
             
         }
         [HttpPost]
-        public ActionResult Edit(Product product, string Id)
+        public ActionResult Edit(Product product, string Id, HttpPostedFileBase file)
         {
             Product p = context.Find(Id);
             if(p == null)
@@ -71,6 +77,11 @@ namespace WonderShopp.UI.Controllers
                 if (!ModelState.IsValid)
                 {
                     return View(product);
+                }
+                if (file != null)
+                {
+                    product.Image = product.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//ProductImages" + product.Image));
                 }
                 p.Category = product.Category;
                 p.Description = product.Description;
