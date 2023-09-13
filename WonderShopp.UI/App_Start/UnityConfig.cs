@@ -5,6 +5,7 @@ using WonderShopp.Core.Contracts;
 using WonderShopp.Core.Models;
 using WonderShopp.DataAccess.Inmemory;
 using WonderShopp.DataAccess.SQL;
+using WonderShopp.Services;
 
 namespace WonderShopp.UI
 {
@@ -48,6 +49,9 @@ namespace WonderShopp.UI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Cart>, SQLRepository<Cart>>();
+            container.RegisterType<IRepository<CartItem>, SQLRepository<CartItem>>();
+            container.RegisterType<ICartService, CartService>();
         }
     }
 }
