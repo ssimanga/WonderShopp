@@ -47,6 +47,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -89,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -99,6 +101,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WonderShopp.Core\WonderShopp.Core.csproj">
+      <Project>{64671577-18BE-4597-8309-3DD5D161C2C8}</Project>
+      <Name>WonderShopp.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WonderShopp.UI\WonderShopp.UI.csproj">
       <Project>{9B862E92-5BFA-4BAC-AB6A-DC795EE799B3}</Project>
       <Name>WonderShopp.UI</Name>

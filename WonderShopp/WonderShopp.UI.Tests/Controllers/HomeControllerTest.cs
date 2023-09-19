@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using WonderShopp.Core.Contracts;
+using WonderShopp.Core.Models;
+using WonderShopp.Core.ViewModels;
 using WonderShopp.UI;
 using WonderShopp.UI.Controllers;
 
@@ -13,42 +16,20 @@ namespace WonderShopp.UI.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+       public void IndexReturnProduct()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            IRepository<Product> productContext = new Mocks.MockContext<Product>();
+            IRepository<ProductCategory> categoryContext = new Mocks.MockContext<ProductCategory>();
+            HomeController controller = new HomeController(productContext, categoryContext);
+            productContext.Insert(new Product());
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
+            var viewModel = (ProductListVM)result.ViewData.Model;
 
-            // Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual(1, viewModel.Products.Count());
+
         }
 
-        [TestMethod]
-        public void About()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
+     
     }
 }
